@@ -1,11 +1,17 @@
 package main.model;
 
-import javax.validation.constraints.Min;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+@Validated
 public class Customer {
 
     @Min(1)
     private Long id;
+
+    @NotBlank
     private String name;
 
     public Customer() {
