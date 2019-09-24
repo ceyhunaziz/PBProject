@@ -1,6 +1,10 @@
 package main.model;
 
+import javax.validation.constraints.Min;
+
 public class Customer {
+
+    @Min(1)
     private Long id;
     private String name;
 
