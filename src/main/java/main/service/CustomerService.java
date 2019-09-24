@@ -21,34 +21,33 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers(){
-        logger.info("getCustomer.start");
-        logger.info("getCustomer.end");
+        logger.info("CustomerService/getAllCustomers.start");
+        logger.info("CustomerService/getAllCustomers.end");
         return customerRepo.getAllCustomers();
     }
 
     public Customer getCustomer(Long id) {
-        logger.info("getCustomer.start");
-        logger.info("getCustomer.end");
+        logger.info("CustomerService/getCustomer.start");
+        logger.info("CustomerService/getCustomer.end");
         return customerRepo.getCustomer(id);
     }
 
     public void addCustomer(Customer customer) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerService/addCustomer.start");
         customerRepo.addCustomer(customer);
-        logger.info("getCustomer.end");
+        logger.info("CustomerService/addCustomer.end");
     }
 
 
     public void updateCustomer(Customer customer, Long id) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerService/updateCustomer.start");
         customerRepo.updateCustomer(customer,id);
-        logger.info("getCustomer.end");
+        logger.info("CustomerService/updateCustomer.end");
     }
 
     public void deleteCustomer(Long id) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerService/deleteCustomer.start");
         customerRepo.deleteCustomer(id);
-        logger.info("getCustomer.end");
+        logger.info("CustomerService/deleteCustomer.end");
     }
-
 }

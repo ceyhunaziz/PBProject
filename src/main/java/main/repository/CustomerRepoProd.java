@@ -26,48 +26,48 @@ public class CustomerRepoProd implements CustomerRepo {
 
 
     public List<Customer> getAllCustomers() {
-        logger.info("getCustomer.start");
-        logger.info("getCustomer.end");
+        logger.info("CustomerRepoProd/getAllCustomers.start");
+        logger.info("CustomerRepoProd/getAllCustomers.end");
         return customers;
     }
 
     public Customer getCustomer(Long id) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerRepoProd/getCustomer.start");
         for (Customer customer : customers) {
             if (customer.getId() == id) {
-                logger.info("getCustomer.end");
+                logger.info("CustomerRepoProd/getCustomer.end");
                 return customer;
             }
         }
-        logger.info("getCustomer.end");
+        logger.info("CustomerRepoProd/getCustomer.end");
         return null;
     }
 
     public void addCustomer(Customer customer) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerRepoProd/addCustomer.start");
         customers.add(customer);
-        logger.info("getCustomer.end");
+        logger.info("CustomerRepoProd/addCustomer.end");
     }
 
 
     public void updateCustomer(Customer customer, Long id) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerRepoProd/updateCustomer.start");
         for (int i = 0; i < customers.size(); i++) {
             if(customers.get(i).getId() == id){
                 customers.set(i,customer);
             }
         }
-        logger.info("getCustomer.end");
+        logger.info("CustomerRepoProd/updateCustomer.end");
     }
 
     public void deleteCustomer(Long id) {
-        logger.info("getCustomer.start");
+        logger.info("CustomerRepoProd/deleteCustomer.start");
         for (int i = 0; i < customers.size(); i++) {
             if(customers.get(i).getId() == id){
                 customers.remove(i);
                 i--;
             }
         }
-        logger.info("getCustomer.end");
+        logger.info("CustomerRepoProd/deleteCustomer.end");
     }
 }
