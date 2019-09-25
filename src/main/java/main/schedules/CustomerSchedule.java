@@ -1,4 +1,4 @@
-package main.Schedules;
+package main.schedules;
 
 import main.model.Customer;
 import main.service.CustomerService;
