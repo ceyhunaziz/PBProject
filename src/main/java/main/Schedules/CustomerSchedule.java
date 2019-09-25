@@ -1,4 +1,4 @@
-package main.batch;
+package main.Schedules;
 
 import main.model.Customer;
 import main.service.CustomerService;
@@ -11,13 +11,13 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
-public class CustomerBatchBean {
+public class CustomerSchedule {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final CustomerService customerService;
 
-    public CustomerBatchBean(CustomerService customerService) {
+    public CustomerSchedule(CustomerService customerService) {
         this.customerService = customerService;
     }
 
