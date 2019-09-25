@@ -4,7 +4,6 @@ import main.controller.CustomerController;
 import main.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -19,10 +18,10 @@ public class CustomerRepoDev implements CustomerRepo {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-    List<Customer> customers = new ArrayList<>(Arrays.asList(
-            new Customer(1L,"CeyhunDev"),
-            new Customer(2L,"SimbaDev"),
-            new Customer(3L,"MufasaDev")
+    private List<Customer> customers = new ArrayList<>(Arrays.asList(
+            new Customer(1L,"Ceyhun Azizov"),
+            new Customer(2L,"Simba Shukurov"),
+            new Customer(3L,"Mufasa Rashidov")
     ));
 
     public List<Customer> getAllCustomers(){
@@ -34,7 +33,7 @@ public class CustomerRepoDev implements CustomerRepo {
     public Customer getCustomer(Long id) {
         logger.info("CustomerRepoDev/getCustomer.start");
         for (Customer customer : customers) {
-            if (customer.getId() == id) {
+            if (customer.getId().equals(id)) {
                 logger.info("CustomerRepoDev/getCustomer.end");
                 return customer;
             }
@@ -53,7 +52,7 @@ public class CustomerRepoDev implements CustomerRepo {
     public void updateCustomer(Customer customer, Long id) {
         logger.info("CustomerRepoDev/updateCustomer.start");
         for (int i = 0; i < customers.size(); i++) {
-            if(customers.get(i).getId() == id){
+            if(customers.get(i).getId().equals(id)){
                 customers.set(i,customer);
             }
         }
@@ -63,7 +62,7 @@ public class CustomerRepoDev implements CustomerRepo {
     public void deleteCustomer(Long id) {
         logger.info("CustomerRepoDev/deleteCustomer.start");
         for (int i = 0; i < customers.size(); i++) {
-            if(customers.get(i).getId() == id){
+            if(customers.get(i).getId().equals(id)){
                 customers.remove(i);
                 i--;
             }
