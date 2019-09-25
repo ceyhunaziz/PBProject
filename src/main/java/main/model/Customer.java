@@ -8,10 +8,10 @@ import javax.validation.constraints.NotBlank;
 @Validated
 public class Customer {
 
-    @Min(1)
+    @Min(value = 1)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Please enter any name!")
     private String name;
 
     public Customer() {

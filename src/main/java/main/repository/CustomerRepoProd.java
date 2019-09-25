@@ -20,7 +20,7 @@ public class CustomerRepoProd implements CustomerRepo {
 
     List<Customer> customers = new ArrayList<>(Arrays.asList(
             new Customer(1L,"Ceyhun"),
-            new Customer(2L,"Yusif"),
+            new Customer(2L,"Simba"),
             new Customer(3L,"Mufasa")
     ));
 

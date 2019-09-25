@@ -21,7 +21,7 @@ public class CustomerRepoDev implements CustomerRepo {
 
     List<Customer> customers = new ArrayList<>(Arrays.asList(
             new Customer(1L,"CeyhunDev"),
-            new Customer(2L,"YusifDev"),
+            new Customer(2L,"SimbaDev"),
             new Customer(3L,"MufasaDev")
     ));
 
