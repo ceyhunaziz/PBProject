@@ -25,8 +25,6 @@ public class CustomerRepoDev implements CustomerRepo {
     ));
 
     public List<Customer> getAllCustomers(){
-        logger.info("CustomerRepoDev/getAllCustomers.start");
-        logger.info("CustomerRepoDev/getAllCustomers.end");
         return customers;
     }
 

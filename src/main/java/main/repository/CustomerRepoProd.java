@@ -26,8 +26,6 @@ public class CustomerRepoProd implements CustomerRepo {
 
 
     public List<Customer> getAllCustomers() {
-        logger.info("CustomerRepoProd/getAllCustomers.start");
-        logger.info("CustomerRepoProd/getAllCustomers.end");
         return customers;
     }
 

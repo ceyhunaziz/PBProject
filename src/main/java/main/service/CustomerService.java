@@ -21,15 +21,15 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers(){
-        logger.info("CustomerService/getAllCustomers.start");
+        List<Customer> result= customerRepo.getAllCustomers();
         logger.info("CustomerService/getAllCustomers.end");
-        return customerRepo.getAllCustomers();
+        return result;
     }
 
     public Customer getCustomer(Long id) {
-        logger.info("CustomerService/getCustomer.start");
+        Customer result = customerRepo.getCustomer(id);
         logger.info("CustomerService/getCustomer.end");
-        return customerRepo.getCustomer(id);
+        return result;
     }
 
     public void addCustomer(Customer customer) {

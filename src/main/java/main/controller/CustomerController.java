@@ -23,7 +23,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping("/customers")
+    @GetMapping("/customers")
     public List<Customer> getAllCustomers(){
         logger.info("CustomerController/getAllCustomers.start");
         List<Customer> result = customerService.getAllCustomers();
@@ -31,7 +31,7 @@ public class CustomerController {
         return result;
     }
 
-    @RequestMapping("/customers/{id}")
+    @GetMapping("/customers/{id}")
     public Customer getCustomer(@PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/getCustomer.start");
         Customer result = customerService.getCustomer(id);
@@ -39,21 +39,21 @@ public class CustomerController {
         return result;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/customers")
+    @PostMapping(value = "/customers")
     public void addCustomer(@Valid @RequestBody Customer customer){
         logger.info("CustomerController/addCustomer.start");
         customerService.addCustomer(customer);
         logger.info("CustomerController/addCustomer.end");
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/customers/{id}")
+    @PutMapping(value = "/customers/{id}")
     public void updateCustomer(@Valid @RequestBody Customer customer, @PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/updateCustomer.start");
         customerService.updateCustomer(customer,id);
         logger.info("CustomerController/updateCustomer.end");
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/customers/{id}")
+    @DeleteMapping(value = "/customers/{id}")
     public void deleteCustomer(@PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/deleteCustomer.start");
         customerService.deleteCustomer(id);
