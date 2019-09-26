@@ -1,6 +1,7 @@
 package main.controller;//
 
-import main.model.Customer;
+import main.dao.Customer;
+import main.model.dto.CustomerDto;
 import main.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/customers")
@@ -25,30 +27,31 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public List<Customer> getAllCustomers(){
+    public List<CustomerDto> getAllCustomers(){
         logger.info("CustomerController/getAllCustomers.start");
-        List<Customer> result = customerService.getAllCustomers();
+        List<CustomerDto> result = customerService.getAllCustomers();
         logger.info("CustomerController/getAllCustomers.end");
         return result;
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomer(@PathVariable("id") @Min(1) Long id){
+    public Optional<CustomerDto> getCustomer(@PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/getCustomer.start");
-        Customer result = customerService.getCustomer(id);
+        Optional<CustomerDto> result = Optional.ofNullable(customerService.getCustomer(id));
         logger.info("CustomerController/getCustomer.end");
         return result;
     }
 
     @PostMapping(value = "/")
-    public void addCustomer(@Valid @RequestBody Customer customer){
+    public Customer addCustomer(@Valid @RequestBody CustomerDto customer){
         logger.info("CustomerController/addCustomer.start");
-        customerService.addCustomer(customer);
+        Customer result = customerService.addCustomer(customer);
         logger.info("CustomerController/addCustomer.end");
+        return result;
     }
 
     @PutMapping(value = "/{id}")
-    public void updateCustomer(@Valid @RequestBody Customer customer, @PathVariable("id") @Min(1) Long id){
+    public void updateCustomer(@Valid @RequestBody CustomerDto customer, @PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/updateCustomer.start");
         customerService.updateCustomer(customer,id);
         logger.info("CustomerController/updateCustomer.end");
