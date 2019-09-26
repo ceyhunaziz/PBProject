@@ -12,6 +12,7 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
+@RequestMapping("/customers")
 @Validated
 public class CustomerController {
 
@@ -23,7 +24,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/customers")
+    @GetMapping("/")
     public List<Customer> getAllCustomers(){
         logger.info("CustomerController/getAllCustomers.start");
         List<Customer> result = customerService.getAllCustomers();
@@ -31,7 +32,7 @@ public class CustomerController {
         return result;
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/{id}")
     public Customer getCustomer(@PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/getCustomer.start");
         Customer result = customerService.getCustomer(id);
@@ -39,21 +40,21 @@ public class CustomerController {
         return result;
     }
 
-    @PostMapping(value = "/customers")
+    @PostMapping(value = "/")
     public void addCustomer(@Valid @RequestBody Customer customer){
         logger.info("CustomerController/addCustomer.start");
         customerService.addCustomer(customer);
         logger.info("CustomerController/addCustomer.end");
     }
 
-    @PutMapping(value = "/customers/{id}")
+    @PutMapping(value = "/{id}")
     public void updateCustomer(@Valid @RequestBody Customer customer, @PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/updateCustomer.start");
         customerService.updateCustomer(customer,id);
         logger.info("CustomerController/updateCustomer.end");
     }
 
-    @DeleteMapping(value = "/customers/{id}")
+    @DeleteMapping(value = "/{id}")
     public void deleteCustomer(@PathVariable("id") @Min(1) Long id){
         logger.info("CustomerController/deleteCustomer.start");
         customerService.deleteCustomer(id);
