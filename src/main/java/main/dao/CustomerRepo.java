@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface CustomerRepo extends CrudRepository<Customer,Long> {
-    List<Customer> findAll();
+public interface CustomerRepo extends CrudRepository<CustomerEntity,Long> {
+    List<CustomerEntity> findAll();
 
-    Optional<Customer> findById(Long id);
+    Optional<CustomerEntity> findById(Long id);
 }

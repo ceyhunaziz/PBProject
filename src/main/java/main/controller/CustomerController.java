@@ -1,6 +1,6 @@
 package main.controller;//
 
-import main.dao.Customer;
+import main.dao.CustomerEntity;
 import main.model.dto.CustomerDto;
 import main.service.CustomerService;
 import org.slf4j.Logger;
@@ -43,9 +43,9 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/")
-    public Customer addCustomer(@Valid @RequestBody CustomerDto customer){
+    public CustomerEntity addCustomer(@Valid @RequestBody CustomerDto customer){
         logger.info("CustomerController/addCustomer.start");
-        Customer result = customerService.addCustomer(customer);
+        CustomerEntity result = customerService.addCustomer(customer);
         logger.info("CustomerController/addCustomer.end");
         return result;
     }

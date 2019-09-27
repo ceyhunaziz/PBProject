@@ -1,36 +1,35 @@
 package main.mapper;
 
-import main.dao.Customer;
+import main.dao.CustomerEntity;
 import main.model.dto.CustomerDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 public class Mapper {
-    public Customer  mapperDtoToEntity(CustomerDto customerDto){
-        Customer result = new Customer(customerDto.getName());
+    public CustomerEntity mapperDtoToEntity(CustomerDto customerDto){
+        CustomerEntity result = new CustomerEntity(customerDto.getName());
         return result;
     }
 
-    public List<Customer> mapperListDtoToEntity(List<CustomerDto> customerDtos){
-        List<Customer> customers = new ArrayList<>();
+    public List<CustomerEntity> mapperListDtoToEntity(List<CustomerDto> customerDtos){
+        List<CustomerEntity> customerEntities = new ArrayList<>();
         for (int i = 0; i < customerDtos.size(); i++) {
-            customers.add(new Customer(customerDtos.get(i).getName()));
+            customerEntities.add(new CustomerEntity(customerDtos.get(i).getName()));
         }
-        return customers;
+        return customerEntities;
     }
 
-    public CustomerDto mapperEntityToDto(Customer customer){
-        CustomerDto result = new CustomerDto(customer.getName());
+    public CustomerDto mapperEntityToDto(CustomerEntity customerEntity){
+        CustomerDto result = new CustomerDto(customerEntity.getName());
         return result;
     }
 
-    public List<CustomerDto> mapperListEntityToDto(List<Customer> customers){
+    public List<CustomerDto> mapperListEntityToDto(List<CustomerEntity> customerEntities){
         List<CustomerDto> customerDtos = new ArrayList<>();
-        for (int i = 0; i < customers.size(); i++) {
-            customerDtos.add(new CustomerDto(customers.get(i).getName()));
+        for (int i = 0; i < customerEntities.size(); i++) {
+            customerDtos.add(new CustomerDto(customerEntities.get(i).getName()));
         }
         return customerDtos;
     }

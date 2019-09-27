@@ -1,7 +1,7 @@
 package main.service;
 
 import main.controller.CustomerController;
-import main.dao.Customer;
+import main.dao.CustomerEntity;
 import main.dao.CustomerRepo;
 import main.mapper.Mapper;
 import main.model.dto.CustomerDto;
@@ -31,25 +31,25 @@ public class CustomerService {
         return result;
     }
 
-    public Customer addCustomer(CustomerDto customer) {
+    public CustomerEntity addCustomer(CustomerDto customer) {
         logger.info("CustomerService/addCustomer.start");
-        Customer result = mapper.mapperDtoToEntity(customer);
+        CustomerEntity result = mapper.mapperDtoToEntity(customer);
         customerRepo.save(result);
         logger.info("CustomerService/addCustomer.end");
         return result;
     }
 
     public CustomerDto getCustomer(Long id) {
-        Optional<Customer> result = customerRepo.findById(id);
+        CustomerEntity result = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("Entity Not Found"));
         logger.info("CustomerService/getCustomer.end");
-        return mapper.mapperEntityToDto(result.get());
+        return mapper.mapperEntityToDto(result);
     }
 
     public void updateCustomer(CustomerDto customer, Long id) {
         logger.info("CustomerService/updateCustomer.start");
-        Customer cust = mapper.mapperDtoToEntity(customer);
-        cust.setId(id);
-        customerRepo.save(cust);
+        CustomerEntity customerEntity = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("EntityNotFound!"));
+        customerEntity.setName(customer.getName());
+        customerRepo.save(customerEntity);
         logger.info("CustomerService/updateCustomer.end");
     }
 

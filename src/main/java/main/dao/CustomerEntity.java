@@ -5,11 +5,11 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 
 @Validated
 @Entity
-public class Customer  {
+@Table(name = "customer")
+public class CustomerEntity {
 
     @Min(value = 1)
     @Id
@@ -20,16 +20,16 @@ public class Customer  {
     @Column(name = "name")
     private String name;
 
-    public Customer() {
+    public CustomerEntity() {
 
     }
 
-    public Customer(Long id, String name) {
+    public CustomerEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Customer(@NotBlank(message = "Please enter any name!") String name) {
+    public CustomerEntity(@NotBlank(message = "Please enter any name!") String name) {
         this.name = name;
     }
 

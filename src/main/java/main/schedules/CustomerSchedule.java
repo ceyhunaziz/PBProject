@@ -1,6 +1,5 @@
 package main.schedules;
 
-import main.dao.Customer;
 import main.model.dto.CustomerDto;
 import main.service.CustomerService;
 import org.slf4j.Logger;
@@ -41,8 +40,8 @@ public class CustomerSchedule {
         logger.info("cronJob.start");
 
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(1,3); i++) {
-            StringBuilder name = new StringBuilder(names.get(ThreadLocalRandom.current().nextInt(0,names.size()-1)));              // Сгенерировал Name для Customer
-            StringBuilder lastName = new StringBuilder(lastNames.get(ThreadLocalRandom.current().nextInt(0,lastNames.size()-1)));  // Сгенерировал LastName для Customer
+            StringBuilder name = new StringBuilder(names.get(ThreadLocalRandom.current().nextInt(0,names.size()-1)));              // Сгенерировал Name для CustomerEntity
+            StringBuilder lastName = new StringBuilder(lastNames.get(ThreadLocalRandom.current().nextInt(0,lastNames.size()-1)));  // Сгенерировал LastName для CustomerEntity
             customerService.addCustomer(new CustomerDto(name +  " " + lastName));
         }
 
