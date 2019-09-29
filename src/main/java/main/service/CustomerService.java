@@ -3,6 +3,7 @@ package main.service;
 import main.controller.CustomerController;
 import main.dao.CustomerEntity;
 import main.dao.CustomerRepo;
+import main.mapper.CustomerMapper;
 import main.mapper.Mapper;
 import main.model.dto.CustomerDto;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class CustomerService {
 
     public CustomerEntity addCustomer(CustomerDto customer) {
         logger.info("CustomerService/addCustomer.start");
-        CustomerEntity result = mapper.mapperDtoToEntity(customer);
+        CustomerEntity result = CustomerMapper.INSTANCE.dtoToEntity(customer);
         customerRepo.save(result);
         logger.info("CustomerService/addCustomer.end");
         return result;
@@ -42,13 +43,14 @@ public class CustomerService {
     public CustomerDto getCustomer(Long id) {
         CustomerEntity result = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("Entity Not Found"));
         logger.info("CustomerService/getCustomer.end");
-        return mapper.mapperEntityToDto(result);
+        return CustomerMapper.INSTANCE.entityToDto(result);
     }
 
     public void updateCustomer(CustomerDto customer, Long id) {
         logger.info("CustomerService/updateCustomer.start");
         CustomerEntity customerEntity = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("EntityNotFound!"));
-        customerEntity.setName(customer.getName());
+        CustomerEntity result = CustomerMapper.INSTANCE.dtoToEntity(customer);
+        customerEntity.setName(result.getName());
         customerRepo.save(customerEntity);
         logger.info("CustomerService/updateCustomer.end");
     }

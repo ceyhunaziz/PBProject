@@ -35,7 +35,7 @@ public class CustomerSchedule {
 
 
 
-    @Scheduled(cron = "0,01 * * * * *")
+    @Scheduled(cron = "0,15 * * * * *")
     public void cronJob(){
         logger.info("cronJob.start");
 
