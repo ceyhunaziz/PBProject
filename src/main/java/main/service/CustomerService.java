@@ -1,7 +1,7 @@
 package main.service;
 
 import main.controller.CustomerController;
-import main.dao.CustomerEntity;
+import main.dao.model.CustomerEntity;
 import main.dao.CustomerRepo;
 import main.mapper.CustomerMapper;
 import main.mapper.Mapper;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService {

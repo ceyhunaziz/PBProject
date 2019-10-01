@@ -1,6 +1,6 @@
 package main.mapper;
 
-import main.dao.CustomerEntity;
+import main.dao.model.CustomerEntity;
 import main.model.dto.CustomerDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -1,4 +1,4 @@
-package main.dao;
+package main.dao.model;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -13,7 +13,8 @@ public class CustomerEntity {
 
     @Min(value = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @NotBlank(message = "Please enter any name!")

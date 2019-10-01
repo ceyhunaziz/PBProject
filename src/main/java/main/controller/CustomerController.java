@@ -1,6 +1,6 @@
 package main.controller;//
 
-import main.dao.CustomerEntity;
+import main.dao.model.CustomerEntity;
 import main.model.dto.CustomerDto;
 import main.service.CustomerService;
 import org.slf4j.Logger;

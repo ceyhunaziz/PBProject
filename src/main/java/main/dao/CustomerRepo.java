@@ -1,5 +1,6 @@
 package main.dao;
 
+import main.dao.model.CustomerEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
