@@ -1,25 +1,36 @@
-package main.model;
+package main.dao.model;
 
 import org.springframework.validation.annotation.Validated;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Validated
-public class Customer {
+@Entity
+@Table(name = "customer")
+public class CustomerEntity {
 
     @Min(value = 1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @NotBlank(message = "Please enter any name!")
+    @Column(name = "name")
     private String name;
 
-    public Customer() {
+    public CustomerEntity() {
 
     }
 
-    public Customer(Long id, String name) {
+    public CustomerEntity(Long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public CustomerEntity(@NotBlank(message = "Please enter any name!") String name) {
         this.name = name;
     }
 

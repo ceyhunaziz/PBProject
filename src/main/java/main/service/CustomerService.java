@@ -1,8 +1,11 @@
 package main.service;
 
 import main.controller.CustomerController;
-import main.model.Customer;
-import main.repository.CustomerRepo;
+import main.dao.model.CustomerEntity;
+import main.dao.CustomerRepo;
+import main.mapper.CustomerMapper;
+import main.mapper.Mapper;
+import main.model.dto.CustomerDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,8 @@ import java.util.List;
 @Service
 public class CustomerService {
 
+    private Mapper mapper = new Mapper();
+
     private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     private final CustomerRepo customerRepo;
@@ -20,34 +25,38 @@ public class CustomerService {
         this.customerRepo = customerRepo;
     }
 
-    public List<Customer> getAllCustomers(){
-        List<Customer> result= customerRepo.getAllCustomers();
+    public List<CustomerDto> getAllCustomers(){
+        List<CustomerDto> result = mapper.mapperListEntityToDto(customerRepo.findAll());
         logger.info("CustomerService/getAllCustomers.end");
         return result;
     }
 
-    public Customer getCustomer(Long id) {
-        Customer result = customerRepo.getCustomer(id);
-        logger.info("CustomerService/getCustomer.end");
+    public CustomerEntity addCustomer(CustomerDto customer) {
+        logger.info("CustomerService/addCustomer.start");
+        CustomerEntity result = CustomerMapper.INSTANCE.dtoToEntity(customer);
+        customerRepo.save(result);
+        logger.info("CustomerService/addCustomer.end");
         return result;
     }
 
-    public void addCustomer(Customer customer) {
-        logger.info("CustomerService/addCustomer.start");
-        customerRepo.addCustomer(customer);
-        logger.info("CustomerService/addCustomer.end");
+    public CustomerDto getCustomer(Long id) {
+        CustomerEntity result = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("Entity Not Found"));
+        logger.info("CustomerService/getCustomer.end");
+        return CustomerMapper.INSTANCE.entityToDto(result);
     }
 
-
-    public void updateCustomer(Customer customer, Long id) {
+    public void updateCustomer(CustomerDto customer, Long id) {
         logger.info("CustomerService/updateCustomer.start");
-        customerRepo.updateCustomer(customer,id);
+        CustomerEntity customerEntity = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("EntityNotFound!"));
+        CustomerEntity result = CustomerMapper.INSTANCE.dtoToEntity(customer);
+        customerEntity.setName(result.getName());
+        customerRepo.save(customerEntity);
         logger.info("CustomerService/updateCustomer.end");
     }
 
     public void deleteCustomer(Long id) {
         logger.info("CustomerService/deleteCustomer.start");
-        customerRepo.deleteCustomer(id);
+        customerRepo.deleteById(id);
         logger.info("CustomerService/deleteCustomer.end");
     }
 }

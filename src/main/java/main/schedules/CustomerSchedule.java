@@ -1,13 +1,15 @@
 package main.schedules;
 
-import main.model.Customer;
+import main.model.dto.CustomerDto;
 import main.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
@@ -33,19 +35,18 @@ public class CustomerSchedule {
 
 
 
-    @Scheduled(cron = "0,20 * * * * *")
+    @Scheduled(cron = "0,15 * * * * *")
     public void cronJob(){
         logger.info("cronJob.start");
 
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(1,3); i++) {
-            StringBuilder name = new StringBuilder(names.get(ThreadLocalRandom.current().nextInt(0,names.size()-1)));              // Сгенерировал Name для Customer
-            StringBuilder lastName = new StringBuilder(lastNames.get(ThreadLocalRandom.current().nextInt(0,lastNames.size()-1)));  // Сгенерировал LastName для Customer
-            Long id = ThreadLocalRandom.current().nextLong(1, Long.MAX_VALUE);                                                            //Сгенерировал Long id для Customer
-            customerService.addCustomer(new Customer(id,name +  " " + lastName));
+            StringBuilder name = new StringBuilder(names.get(ThreadLocalRandom.current().nextInt(0,names.size()-1)));              // Сгенерировал Name для CustomerEntity
+            StringBuilder lastName = new StringBuilder(lastNames.get(ThreadLocalRandom.current().nextInt(0,lastNames.size()-1)));  // Сгенерировал LastName для CustomerEntity
+            customerService.addCustomer(new CustomerDto(name +  " " + lastName));
         }
 
-        Collection<Customer> customers = customerService.getAllCustomers();
-        logger.info("There are {} customers in the data store", customers.size());
+        List<CustomerDto> customerEntities = customerService.getAllCustomers();
+        logger.info("There are {} customerEntities in the data store", customerEntities.size());
         logger.info("cronJob.end");
     }
 }
